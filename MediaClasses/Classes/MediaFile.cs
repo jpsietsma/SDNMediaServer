@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace MediaClasses.Classes
     /// <summary>
     /// Class representing the view model for a media file.  This is the base class for all others within SDN Media Server.
     /// </summary>
-    public class MediaFile : IMediaFile
+    public class MediaFile : IMediaFile, IDisposable
     {
         #region ######## Media File Object Properties ########
             /// <summary>
@@ -138,6 +139,18 @@ namespace MediaClasses.Classes
                     }
             }
         }
+            
+            /// <summary>
+            /// Disposes of object when no longer needed.
+            /// </summary>
+            public virtual void Dispose()
+            {
+                foreach (PropertyInfo _prop in GetType().GetProperties())
+                {
+                    _prop.SetValue(this, null);
+                }
+            }
+
         #endregion
 
         #region ######## Media File Object Enums ########
