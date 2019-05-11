@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MediaClasses</name>
+    </assembly>
+    <members>
+        <member name="T:MediaClasses.Classes.IMediaFile">
+            <summary>
+            Represents any type of media file in any state within the system.  Base interface for all media files
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.IMediaFile.FileCreated">
+            <summary>
+            DateTime file was created.  This can be used to reliably determine the exact moment the download for the file completed.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.IMediaFile.FileFullPath">
+            <summary>
+            String of the full path to the file on the filesystem.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.IMediaFile.FileInfo">
+            <summary>
+            FileInfo object containing details about the file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.IMediaFile.FileName">
+            <summary>
+            Name of the file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.IMediaFile.FileRootDirectory">
+            <summary>
+            Parent folder of the file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.IMediaFile.FileSize">
+            <summary>
+            Size of the file on disk in bytes
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Classes.IMediaFile.GetFileSize(System.Nullable{MediaClasses.Classes.MediaFile.SizeFormat})">
+            <summary>
+            Get the size of the file in a certain measured unit
+            </summary>
+            <param name="_format">SizeFormat object to determine conversion unit</param>
+            <returns>double representing the file size in the selected unit</returns>
+        </member>
+        <member name="T:MediaClasses.Classes.MediaFile">
+            <summary>
+            Class representing the view model for a media file.  This is the base class for all others within SDN Media Server.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.MediaFile.Id">
+            <summary>
+            Database ID for the entity
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.MediaFile.FileName">
+            <summary>
+            Name of the media file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.MediaFile.FileFullPath">
+            <summary>
+            Full file system path to the file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.MediaFile.FileSize">
+            <summary>
+            Size of the media file in bytes
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.MediaFile.FileRootDirectory">
+            <summary>
+            Root directory where the file resides
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.MediaFile.FileInfo">
+            <summary>
+            Filesystem file info about the media file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.MediaFile.FileCreated">
+            <summary>
+            DateTime object representing the creation date of the media file.  This can can reliably be used to determine the DateTime of when the file was downloaded.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Classes.MediaFile.#ctor(System.String)">
+            <summary>
+            Create a new instance of the MediaFile class object.
+            </summary>
+            <param name="_file">Path to file used to populate properties.</param>
+        </member>
+        <member name="M:MediaClasses.Classes.MediaFile.#ctor(System.IO.FileInfo)">
+            <summary>
+            Create a new instance of the MediaFile class object.
+            </summary>
+            <param name="_file">FileInfo object reference used to populate properties.</param>
+        </member>
+        <member name="M:MediaClasses.Classes.MediaFile.NameFromPath(System.String)">
+            <summary>
+            Split the full path of the media file into a string array by the '\' character
+            </summary>
+            <param name="_path">string full path to the media file on the filesystem</param>
+            <returns>Media file name as a string</returns>
+            <example>
+            string _path = @"C:\Documents\Media\TV\TestMedia.mkv";
+            MediaFile _model = new MediaFile(_path)
+            Console.WriteLine(_model.NameFromPath())
+            
+            //This will output: TestMedia.mkv
+            </example>
+        </member>
+        <member name="M:MediaClasses.Classes.MediaFile.GetFileSize(System.Nullable{MediaClasses.Classes.MediaFile.SizeFormat})">
+            <summary>
+            Retrieve the file size in a specified format.  Default will return the file size in bytes.
+            </summary>
+            <param name="_format">enum value representing the unit of measurement to convert with. </param>
+            <returns>file size in selected format.</returns>
+        </member>
+        <member name="T:MediaClasses.Classes.MediaFile.SizeFormat">
+            <summary>
+            Enum representing the different ways to display a file's size
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Classes.MediaFile.SizeFormat.KB">
+            <summary>
+            Format size to Kilobytes
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Classes.MediaFile.SizeFormat.MB">
+            <summary>
+            Format size to Megabytes
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Classes.MediaFile.SizeFormat.GB">
+            <summary>
+            Format size to Gigabytes
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Classes.MediaFile.SizeFormat.TB">
+            <summary>
+            Format size to Terabytes
+            </summary>
+        </member>
+        <member name="T:MediaClasses.Classes.MediaFile.ValidMediaFileTypes">
+            <summary>
+            Enum representing valid extensions (file types) for media files
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Classes.MediaFile.ValidMediaFileTypes.MKV">
+            <summary>
+            File of type Matroska Video
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Classes.MediaFile.ValidMediaFileTypes.WMV">
+            <summary>
+            File of type Windows Media Video
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Classes.MediaFile.ValidMediaFileTypes.AVI">
+            <summary>
+            File of type Audio Video Interleave
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Classes.MediaFile.ValidMediaFileTypes.MP4">
+            <summary>
+            File of type MPEG-4 Part 14
+            </summary>
+        </member>
+        <member name="T:MediaClasses.Classes.SortMediaFile">
+            <summary>
+            Class representing a media file in the sort folder, not yet classified into a TelevisionEpisode
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.ShowName">
+            <summary>
+            Name of the show this media file is an episode belonging to
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.ShowSeason">
+            <summary>
+            Number of the season this media file episode belongs to
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.SeasonExists">
+            <summary>
+            Does the folder for the season exist on the filesystem?
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.SeasonPath">
+            <summary>
+            Full file path to the season folder
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.IsClassified">
+            <summary>
+            Has this sort file been scanned and classified?
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.Classification">
+            <summary>
+            Classification of the file after being scanned
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.FilePathParts">
+            <summary>
+            Full file path value split by the '\' character.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Classes.SortMediaFile.#ctor(System.String)">
+            <summary>
+            New instance of a SortMediaFile object
+            </summary>
+            <param name="_file">Full file path to the media file.</param>
+        </member>
+        <member name="M:MediaClasses.Classes.SortMediaFile.#ctor(System.IO.FileInfo)">
+            <summary>
+            New instance of a SortMediaFile object
+            </summary>
+            <param name="_file">FileInfo object of the media file.</param>
+        </member>
+        <member name="M:MediaClasses.Classes.SortMediaFile.#ctor(MediaClasses.Classes.MediaFile)">
+            <summary>
+            New instance of a SortMediaFile object
+            </summary>
+            <param name="_file"></param>
+        </member>
+        <member name="M:MediaClasses.Classes.SortMediaFile.SplitFullPath(System.String)">
+            <summary>
+            Split the full path of the media file by the '\' character
+            </summary>
+            <param name="_path">string full filesystem path to the file.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MediaClasses.Classes.SortMediaFile.SplitFullPath(System.IO.FileInfo)">
+            <summary>
+            Split the full path of the media file by the '\' character
+            </summary>
+            <param name="_file">FileInfo object representing our file</param>
+            <returns></returns>
+        </member>
+        <member name="T:MediaClasses.Config.Configuration">
+            <summary>
+            Class for retrieving and manipulating program configuration data and options.
+            </summary>
+        </member>
+        <member name="T:MediaClasses.Config.Configuration.AppConfig">
+            <summary>
+            Class for dealing with the program App.config file
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Config.Configuration.AppConfig.GetConnectionString">
+            <summary>
+            Retrieve the connection string from the App.config file.
+            </summary>
+            <returns>string SQL connection string</returns>
+        </member>
+        <member name="M:MediaClasses.Config.Configuration.AppConfig.GetDatabaseServer">
+            <summary>
+            Retrieve the database server from the App.config file
+            </summary>
+            <returns>string database server name</returns>
+        </member>
+        <member name="M:MediaClasses.Config.Configuration.AppConfig.GetDatabaseName">
+            <summary>
+            Retrieve the database name from the App.config file
+            </summary>
+            <returns>string database name</returns>
+        </member>
+        <member name="M:MediaClasses.Config.Configuration.AppConfig.GetDatabaseInstance">
+            <summary>
+            Retrieve the database instance name from the App.config file
+            </summary>
+            <returns>string database instance name</returns>
+        </member>
+        <member name="M:MediaClasses.Config.Configuration.AppConfig.GetSortDirectory">
+            <summary>
+            Retrieve the sort directory path from the App.config file
+            </summary>
+            <returns>string directory path</returns>
+        </member>
+        <member name="M:MediaClasses.Config.Configuration.AppConfig.GetTelevisionDrives">
+            <summary>
+            Retrieve the list of Television Show drives from the App.config file
+            </summary>
+            <returns>List of drives containing television shows</returns>
+        </member>
+        <member name="M:MediaClasses.Config.Configuration.AppConfig.GetMovieDrives">
+            <summary>
+            Retrieve the list of Movie drives from the App.config file
+            </summary>
+            <returns>List of drives containing movies</returns>
+        </member>
+        <member name="M:MediaClasses.Config.Configuration.AppConfig.GetConfigurationSettings">
+            <summary>
+            Retrieve program settings from the App.config file
+            </summary>
+            <returns>Dictionary of program settings</returns>
+        </member>
+        <member name="T:MediaClasses.Ext.SortExtensionMethods">
+            <summary>
+            Methods to add additional functionality to SortMedia objects.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Ext.SortExtensionMethods.ShowExists(MediaClasses.Classes.SortMediaFile)">
+            <summary>
+            Check if the show this file belongs to exists on the server filesystem
+            </summary>
+            <param name="_file">SortMediaFile object representing the sort file to check</param>
+            <returns>true if show exists.</returns>
+        </member>
+        <member name="T:MediaClasses.ViewModels.MediaFileViewModel">
+            <summary>
+            Class representing the view model for a media file.  This is the base class for all others within SDN Media Server.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.Id">
+            <summary>
+            Database ID for the entity record
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.FileName">
+            <summary>
+            Name of the media file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.FileFullPath">
+            <summary>
+            Full file system path to the file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.FileSize">
+            <summary>
+            Size of the media file in bytes
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.FileRootDirectory">
+            <summary>
+            Root directory where the file resides
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.FileInfo">
+            <summary>
+            Filesystem file info about the media file.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.FileCreated">
+            <summary>
+            DateTime object representing the creation date of the media file.  This can reliably be used to determine the DateTime of when the file download was completed.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.ViewModels.MediaFileViewModel.#ctor(MediaClasses.Classes.MediaFile)">
+            <summary>
+            Create a new instance of the MediaFileViewModel class object.
+            </summary>
+            <param name="_data">MediaFile object representing the scanned file</param>
+        </member>
+        <member name="M:MediaClasses.ViewModels.MediaFileViewModel.#ctor">
+            <summary>
+            Create a new instance of the MediaFile class object.
+            </summary>
+        </member>
+    </members>
+</doc>

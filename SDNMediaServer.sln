@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{20CFCD9B-00C1-4E69-8351-D0D63D7DBCDB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaClasses", "MediaClasses\MediaClasses.csproj", "{0BA350B4-D5CD-4E8A-A120-39A5F657A324}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{9CD8C43D-9186-4700-9F1C-28419D2CADCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{20CFCD9B-00C1-4E69-8351-D0D63D7DBCDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20CFCD9B-00C1-4E69-8351-D0D63D7DBCDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20CFCD9B-00C1-4E69-8351-D0D63D7DBCDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20CFCD9B-00C1-4E69-8351-D0D63D7DBCDB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BA350B4-D5CD-4E8A-A120-39A5F657A324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BA350B4-D5CD-4E8A-A120-39A5F657A324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BA350B4-D5CD-4E8A-A120-39A5F657A324}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BA350B4-D5CD-4E8A-A120-39A5F657A324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CD8C43D-9186-4700-9F1C-28419D2CADCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD8C43D-9186-4700-9F1C-28419D2CADCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD8C43D-9186-4700-9F1C-28419D2CADCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD8C43D-9186-4700-9F1C-28419D2CADCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
