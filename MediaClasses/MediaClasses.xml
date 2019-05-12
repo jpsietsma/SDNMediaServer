@@ -46,6 +46,75 @@
             <param name="_format">SizeFormat object to determine conversion unit</param>
             <returns>double representing the file size in the selected unit</returns>
         </member>
+        <member name="T:MediaClasses.Classes.ISortMediaFile">
+            <summary>
+            Class that represents a sort file.  Sort files have been scanned but not necessarily classified yet.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.FilePath">
+            <summary>
+            Full path to the file
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.Classification">
+            <summary>
+            Program media file classification type of file
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.FilePathParts">
+            <summary>
+            String array of file parts split by 'SxxExx' in filename.  Used to determine show name, season number, and episode number.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.IsClassified">
+            <summary>
+            Boolean has the file been classified yet?
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.SeasonExists">
+            <summary>
+            Does the season folder exist?  If this is Episode 1 then we may have to create the season folder.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.SeasonPath">
+            <summary>
+            The full filepath to the season folder
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.ShowName">
+            <summary>
+            The show name as calculated strictly from the filename of the sort file.  This has not been verified or sanitized yet.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.ShowSeason">
+            <summary>
+            The show season as calculated strictly from the filename of the sort file.  This has not been verified or sanitized yet.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.ValidEpisodeFile">
+            <summary>
+            Is this a television show episode file?
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.ISortMediaFile.ValidMovieFile">
+            <summary>
+            Is this a movie file?
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Classes.ISortMediaFile.SplitFullPath(System.IO.FileInfo)">
+            <summary>
+            Split the full filename into an array by the '\' character.
+            </summary>
+            <param name="_file">FileInfo object used to determine full file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MediaClasses.Classes.ISortMediaFile.SplitFullPath(System.String)">
+            <summary>
+            Split the full filename into an array by the '\' character.
+            </summary>
+            <param name="_path">string full file path to the file.</param>
+            <returns></returns>
+        </member>
         <member name="T:MediaClasses.Classes.MediaFile">
             <summary>
             Class representing the view model for a media file.  This is the base class for all others within SDN Media Server.
@@ -119,6 +188,11 @@
             <param name="_format">enum value representing the unit of measurement to convert with. </param>
             <returns>file size in selected format.</returns>
         </member>
+        <member name="M:MediaClasses.Classes.MediaFile.Dispose">
+            <summary>
+            Disposes of object when no longer needed.
+            </summary>
+        </member>
         <member name="T:MediaClasses.Classes.MediaFile.SizeFormat">
             <summary>
             Enum representing the different ways to display a file's size
@@ -174,6 +248,11 @@
             Class representing a media file in the sort folder, not yet classified into a TelevisionEpisode
             </summary>
         </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.FilePath">
+            <summary>
+            Full path to the file
+            </summary>
+        </member>
         <member name="P:MediaClasses.Classes.SortMediaFile.ShowName">
             <summary>
             Name of the show this media file is an episode belonging to
@@ -181,7 +260,7 @@
         </member>
         <member name="P:MediaClasses.Classes.SortMediaFile.ShowSeason">
             <summary>
-            Number of the season this media file episode belongs to
+            Season number this media file episode belongs to
             </summary>
         </member>
         <member name="P:MediaClasses.Classes.SortMediaFile.SeasonExists">
@@ -204,6 +283,16 @@
             Classification of the file after being scanned
             </summary>
         </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.ValidEpisodeFile">
+            <summary>
+            Is this sort file a valid television episode?
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.SortMediaFile.ValidMovieFile">
+            <summary>
+            Is this sort file a valid movie file?
+            </summary>
+        </member>
         <member name="P:MediaClasses.Classes.SortMediaFile.FilePathParts">
             <summary>
             Full file path value split by the '\' character.
@@ -221,7 +310,7 @@
             </summary>
             <param name="_file">FileInfo object of the media file.</param>
         </member>
-        <member name="M:MediaClasses.Classes.SortMediaFile.#ctor(MediaClasses.Classes.MediaFile)">
+        <member name="M:MediaClasses.Classes.SortMediaFile.#ctor(MediaClasses.Classes.IMediaFile)">
             <summary>
             New instance of a SortMediaFile object
             </summary>
@@ -240,6 +329,33 @@
             </summary>
             <param name="_file">FileInfo object representing our file</param>
             <returns></returns>
+        </member>
+        <member name="T:MediaClasses.Classes.TelevisionEpisode">
+            <summary>
+            Class representing a media file that has been classified as a Television Episode.  This is one of two base classes for classified sort items.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.TelevisionEpisode.TelevisionShow">
+            <summary>
+            Name of the Television Show this episode belongs to.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.TelevisionEpisode.TelevisionSeason">
+            <summary>
+            Name of the Television Season this episode belongs to.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Classes.TelevisionEpisode.#ctor(System.String)">
+            <summary>
+            Create a new instance of the TelevisionEpisode object.  Television Episodes are one of two base classes for classified sort items.
+            </summary>
+            <param name="_file">string path to the episode file.</param>
+        </member>
+        <member name="M:MediaClasses.Classes.TelevisionEpisode.#ctor(System.IO.FileInfo)">
+            <summary>
+            Create a new instance of the Television object.  Television Episodes are one of two base classes for classfied sort items.
+            </summary>
+            <param name="_file">FileInfo object related to the episode file.</param>
         </member>
         <member name="T:MediaClasses.Config.Configuration">
             <summary>
@@ -299,17 +415,83 @@
             </summary>
             <returns>Dictionary of program settings</returns>
         </member>
-        <member name="T:MediaClasses.Ext.SortExtensionMethods">
+        <member name="T:MediaClasses.Enum.SortEnums">
             <summary>
-            Methods to add additional functionality to SortMedia objects.
+            Enums related to sort files
             </summary>
         </member>
-        <member name="M:MediaClasses.Ext.SortExtensionMethods.ShowExists(MediaClasses.Classes.SortMediaFile)">
+        <member name="T:MediaClasses.Enum.SortEnums.SortTypeClassification">
             <summary>
-            Check if the show this file belongs to exists on the server filesystem
+            Enum whose values represent classification types of sort files.
             </summary>
-            <param name="_file">SortMediaFile object representing the sort file to check</param>
-            <returns>true if show exists.</returns>
+        </member>
+        <member name="F:MediaClasses.Enum.SortEnums.SortTypeClassification.SORT">
+            <summary>
+            File has not yet been classified.
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Enum.SortEnums.SortTypeClassification.TV">
+            <summary>
+            File has been classified as a Television Episode.
+            </summary>
+        </member>
+        <member name="F:MediaClasses.Enum.SortEnums.SortTypeClassification.MOVIE">
+            <summary>
+            File has been classified as a Movie file.
+            </summary>
+        </member>
+        <member name="T:MediaClasses.Exceptions.InvalidFileTypeException">
+            <summary>
+            Invalid file type has been detected by sort scanner.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Exceptions.InvalidFileTypeException.Message">
+            <summary>
+            Message indicating the exception error.
+            </summary>
+            
+        </member>
+        <member name="P:MediaClasses.Exceptions.InvalidFileTypeException.InnerException">
+            <summary>
+            Inner exception
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Exceptions.InvalidFileTypeException.#ctor(System.String)">
+            <summary>
+            Exception of InvalidFileTypeException represents invalid filetype enountered by sort scanner.
+            </summary>
+            <param name="fileType"></param>
+        </member>
+        <member name="T:MediaClasses.Ext.MediaFileExt">
+            <summary>
+            Class to extend functionality of the MediaFile class.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Ext.MediaFileExt.ToSort(MediaClasses.Classes.MediaFile)">
+            <summary>
+            Convert this MediaFile object to a SortMediaFile object
+            </summary>
+            <param name="_file">MediaFile to convert</param>
+            <returns>Converted SortMediaFile object</returns>
+        </member>
+        <member name="T:MediaClasses.Lib.MediaConversion">
+            <summary>
+            Class to convert between media classes.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Lib.MediaConversion.ToEpisode(MediaClasses.Classes.ISortMediaFile)">
+            <summary>
+            Convert SortMediaFile object into TelevisionEpisode object.
+            </summary>
+            <param name="_sortFile">Sort file to convert</param>
+            <returns>Converted TelevisionEpisode object</returns>
+        </member>
+        <member name="M:MediaClasses.Lib.MediaConversion.ToSort(MediaClasses.Classes.IMediaFile)">
+            <summary>
+            Convert MediaFile object into SortMediaFile object.
+            </summary>
+            <param name="_mediaFile">Media file to convert</param>
+            <returns>Converted SortMediaFile object</returns>
         </member>
         <member name="T:MediaClasses.ViewModels.MediaFileViewModel">
             <summary>

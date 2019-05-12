@@ -3,24 +3,30 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using static MediaClasses.Enum.SortEnums;
 
 namespace MediaClasses.Classes
 {
     /// <summary>
     /// Class representing a media file in the sort folder, not yet classified into a TelevisionEpisode
     /// </summary>
-    public class SortMediaFile : MediaFile
+    public class SortMediaFile : MediaFile, ISortMediaFile
     {
         #region ######## Properties ########
+            /// <summary>
+            /// Full path to the file
+            /// </summary>
+            public string FilePath { get; set; }
+
             /// <summary>
             /// Name of the show this media file is an episode belonging to
             /// </summary>
             public string ShowName { get; set; }
 
             /// <summary>
-            /// Number of the season this media file episode belongs to
+            /// Season number this media file episode belongs to
             /// </summary>
-            public int ShowSeason { get; set; }
+            public string ShowSeason { get; set; }
 
             /// <summary>
             /// Does the folder for the season exist on the filesystem?
@@ -40,7 +46,17 @@ namespace MediaClasses.Classes
             /// <summary>
             /// Classification of the file after being scanned
             /// </summary>
-            public string Classification { get; set; }
+            public SortTypeClassification Classification { get; set; }
+
+            /// <summary>
+            /// Is this sort file a valid television episode?
+            /// </summary>
+            public bool ValidEpisodeFile { get; set; }
+
+            /// <summary>
+            /// Is this sort file a valid movie file?
+            /// </summary>
+            public bool ValidMovieFile { get; set; }
 
             /// <summary>
             /// Full file path value split by the '\' character.
@@ -71,7 +87,7 @@ namespace MediaClasses.Classes
             /// New instance of a SortMediaFile object
             /// </summary>
             /// <param name="_file"></param>
-            public SortMediaFile(MediaFile _file):base(new FileInfo(_file.FileFullPath))
+            public SortMediaFile(IMediaFile _file):base(new FileInfo(_file.FileFullPath))
             {
                 FilePathParts = SplitFullPath(FileInfo.FullName);
             }
