@@ -1,24 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using MediaClasses.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebUI.DatabaseContext;
 
 namespace WebUI.Controllers
 {
     public class SortController : Controller
     {
+        public ActionResult ScanSort()
+        {
+            string path = @"S:\";
+
+            using (DB conn = new DB())
+            {
+                foreach (string _path in Directory.GetFiles(path))
+                {
+                    FileInfo info = new FileInfo(_path);
+                    var a = conn.SortQueue.Where(x => x.FilePath == _path).Count();
+
+                    if (a == 0)
+                    {
+                        DatabaseContext.SortQueue _new = new DatabaseContext.SortQueue
+                        {
+                            Classification = "Sort",
+                            ClassificationDate = DateTime.Now.Date.ToString(),
+                            FileName = info.Name,
+                            FilePath = _path,
+                            ShowDrive = null,
+                            ShowName = null,
+                            ShowSeason = null
+                        };
+
+                        try
+                        {
+                            conn.SortQueue.Add(_new);
+                            conn.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
+                    }                    
+                }
+
+                
+            }
+
+            return View("ViewSort");
+        }
+
+        public ActionResult ViewSort()
+        {
+            List<SortQueue> _models = new List<SortQueue>();
+
+            using (DB conn = new DB())
+            {
+                foreach (var _item in conn.SortQueue)
+                {
+                    _models.Add(_item);
+                }
+            }
+
+            return View(_models);
+        }
+
         // GET: Sort
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Sort/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            MediaFileInfo info = new MediaFileInfo(id);
+            return View(info);
         }
 
         // GET: Sort/Create

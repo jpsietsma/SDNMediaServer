@@ -16,7 +16,7 @@ namespace MediaClasses.Classes
             /// <summary>
             /// Full path to the file
             /// </summary>
-            public string FilePath { get; set; }
+            public new string FilePath { get; set; }
 
             /// <summary>
             /// Name of the show this media file is an episode belonging to
@@ -87,7 +87,7 @@ namespace MediaClasses.Classes
             /// New instance of a SortMediaFile object
             /// </summary>
             /// <param name="_file"></param>
-            public SortMediaFile(IMediaFile _file):base(new FileInfo(_file.FileFullPath))
+            public SortMediaFile(IMediaFile _file):base(new FileInfo(_file.FilePath))
             {
                 FilePathParts = SplitFullPath(FileInfo.FullName);
             }

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MediaClasses.ViewModels.MediaFileViewModel>
+
+@{
+    ViewData["Title"] = "Sort Scan Results | SDNMediaServer";
+}
+
+<h1>Sort Scanner Results</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileRootDirectory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileRootDirectory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileCreated)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FilePath">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FilePath">Details</a> |
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,67 @@
+﻿@model List<WebUI.DatabaseContext.SortQueue>
+
+@{
+    ViewData["Title"] = "SDN Media | Automation Queue";
+}
+
+<h1>Automation Queue - Media Downloads</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().PkFileId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FilePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Classification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ShowName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ShowSeason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ShowDrive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PkFileId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowSeason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowDrive)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

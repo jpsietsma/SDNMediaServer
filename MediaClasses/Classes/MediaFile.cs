@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using MediaClasses.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -29,12 +31,12 @@ namespace MediaClasses.Classes
             /// <summary>
             /// Full file system path to the file.
             /// </summary>
-            public string FileFullPath { get; set; }
+            public string FilePath { get; set; }
 
             /// <summary>
             /// Size of the media file in bytes
             /// </summary>
-            public decimal FileSize { get; set; }
+            public long FileSize { get; set; }
 
             /// <summary>
             /// Root directory where the file resides
@@ -53,7 +55,6 @@ namespace MediaClasses.Classes
         #endregion
 
         #region ######## Media File Object Constructors ########
-
             /// <summary>
             /// Create a new instance of the MediaFile class object.
             /// </summary>
@@ -61,7 +62,7 @@ namespace MediaClasses.Classes
             public MediaFile(string _file)
             {
                 FileInfo = new FileInfo(_file);
-                FileFullPath = FileInfo.FullName;
+                FilePath = FileInfo.FullName;
                 FileName = FileInfo.Name;
             
                 FileSize = FileInfo.Length;
@@ -76,7 +77,7 @@ namespace MediaClasses.Classes
             public MediaFile(FileInfo _file)
         {
             FileInfo = _file;
-            FileFullPath = FileInfo.FullName;
+            FilePath = FileInfo.FullName;
             FileName = FileInfo.Name;
             FileSize = FileInfo.Length;
             FileRootDirectory = FileInfo.DirectoryName;
@@ -86,6 +87,15 @@ namespace MediaClasses.Classes
         #endregion
 
         #region ######## Media File Object Methods ########
+
+            /// <summary>
+            /// Get a view model of the data object.
+            /// </summary>
+            /// <returns>MediaFileViewModel representing the data object.</returns>
+            public MediaFileViewModel GetViewModel()
+            {
+                return new MediaFileViewModel() { FileInfo = FileInfo, FilePath = FilePath, FileCreated = FileCreated, FileName = FileName, FileRootDirectory = FileRootDirectory, FileSize = FileSize };
+            }
 
             /// <summary>
             /// Split the full path of the media file into a string array by the '\' character
@@ -149,6 +159,7 @@ namespace MediaClasses.Classes
                 {
                     _prop.SetValue(this, null);
                 }
+
             }
 
         #endregion

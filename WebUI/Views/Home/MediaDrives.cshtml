@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebUI.DatabaseContext.MediaDrives>
+
+@{
+    ViewData["Title"] = "MediaDrives";
+}
+
+<h1>MediaDrives</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DriveLetter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DriveMediaType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MediaLibraryPath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriveLetter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriveMediaType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MediaLibraryPath)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PkDriveId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PkDriveId">Details</a> |
+                <!--<a asp-action="Delete" asp-route-id="@item.PkDriveId">Delete</a>-->
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

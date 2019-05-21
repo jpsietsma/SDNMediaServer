@@ -14,14 +14,9 @@
             DateTime file was created.  This can be used to reliably determine the exact moment the download for the file completed.
             </summary>
         </member>
-        <member name="P:MediaClasses.Classes.IMediaFile.FileFullPath">
+        <member name="P:MediaClasses.Classes.IMediaFile.FilePath">
             <summary>
             String of the full path to the file on the filesystem.
-            </summary>
-        </member>
-        <member name="P:MediaClasses.Classes.IMediaFile.FileInfo">
-            <summary>
-            FileInfo object containing details about the file.
             </summary>
         </member>
         <member name="P:MediaClasses.Classes.IMediaFile.FileName">
@@ -38,13 +33,6 @@
             <summary>
             Size of the file on disk in bytes
             </summary>
-        </member>
-        <member name="M:MediaClasses.Classes.IMediaFile.GetFileSize(System.Nullable{MediaClasses.Classes.MediaFile.SizeFormat})">
-            <summary>
-            Get the size of the file in a certain measured unit
-            </summary>
-            <param name="_format">SizeFormat object to determine conversion unit</param>
-            <returns>double representing the file size in the selected unit</returns>
         </member>
         <member name="T:MediaClasses.Classes.ISortMediaFile">
             <summary>
@@ -130,7 +118,7 @@
             Name of the media file.
             </summary>
         </member>
-        <member name="P:MediaClasses.Classes.MediaFile.FileFullPath">
+        <member name="P:MediaClasses.Classes.MediaFile.FilePath">
             <summary>
             Full file system path to the file.
             </summary>
@@ -166,6 +154,12 @@
             Create a new instance of the MediaFile class object.
             </summary>
             <param name="_file">FileInfo object reference used to populate properties.</param>
+        </member>
+        <member name="M:MediaClasses.Classes.MediaFile.GetViewModel">
+            <summary>
+            Get a view model of the data object.
+            </summary>
+            <returns>MediaFileViewModel representing the data object.</returns>
         </member>
         <member name="M:MediaClasses.Classes.MediaFile.NameFromPath(System.String)">
             <summary>
@@ -508,7 +502,7 @@
             Name of the media file.
             </summary>
         </member>
-        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.FileFullPath">
+        <member name="P:MediaClasses.ViewModels.MediaFileViewModel.FilePath">
             <summary>
             Full file system path to the file.
             </summary>
@@ -542,6 +536,31 @@
         <member name="M:MediaClasses.ViewModels.MediaFileViewModel.#ctor">
             <summary>
             Create a new instance of the MediaFile class object.
+            </summary>
+        </member>
+        <member name="T:WebUI.DatabaseContext.MediaDrive">
+            <summary>
+            Class that represents a database record for a media drive in the system.
+            </summary>
+        </member>
+        <member name="P:WebUI.DatabaseContext.MediaDrive.PkDriveId">
+            <summary>
+            Database PK of the record for the drive/
+            </summary>
+        </member>
+        <member name="P:WebUI.DatabaseContext.MediaDrive.DriveLetter">
+            <summary>
+            The system drive letter, ie C, D, etc.
+            </summary>
+        </member>
+        <member name="P:WebUI.DatabaseContext.MediaDrive.DriveMediaType">
+            <summary>
+            The type of media stored on the drive, usually Television or Movies.
+            </summary>
+        </member>
+        <member name="P:WebUI.DatabaseContext.MediaDrive.MediaLibraryPath">
+            <summary>
+            The path to the directory on the drive where the media type is stored.
             </summary>
         </member>
     </members>

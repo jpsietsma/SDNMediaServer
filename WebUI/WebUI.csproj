@@ -3,16 +3,345 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <StartupObject>WebUI.Program</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="wwwroot\css\admin\css\Models\ErrorViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Admin\accordion.html" />
+    <Content Include="Views\Admin\advance-form-element.html" />
+    <Content Include="Views\Admin\alerts.html" />
+    <Content Include="Views\Admin\analytics.html" />
+    <Content Include="Views\Admin\area-charts.html" />
+    <Content Include="Views\Admin\bar-charts.html" />
+    <Content Include="Views\Admin\basic-form-element.html" />
+    <Content Include="Views\Admin\buttons.html" />
+    <Content Include="Views\Admin\c3.html" />
+    <Content Include="Views\Admin\captcha.html" />
+    <Content Include="Views\Admin\checkout.html" />
+    <Content Include="Views\Admin\code-editor.html" />
+    <Content Include="Views\Admin\comment.html" />
+    <Content Include="Views\Admin\compose-mail.html" />
+    <Content Include="Views\Admin\contact-client-v.1.html" />
+    <Content Include="Views\Admin\contact-client.html" />
+    <Content Include="Views\Admin\contact.html" />
+    <Content Include="Views\Admin\dashboard-2.html" />
+    <Content Include="Views\Admin\dashboard.html" />
+    <Content Include="Views\Admin\data-maps.html" />
+    <Content Include="Views\Admin\data-table.html" />
+    <Content Include="Views\Admin\dual-list-box.html" />
+    <Content Include="Views\Admin\google-map.html" />
+    <Content Include="Views\Admin\images-cropper.html" />
+    <Content Include="Views\Admin\inbox.html" />
+    <Content Include="Views\Admin\line-charts.html" />
+    <Content Include="Views\Admin\login.html" />
+    <Content Include="Views\Admin\modals.html" />
+    <Content Include="Views\Admin\multi-upload.html" />
+    <Content Include="Views\Admin\notifications.html" />
+    <Content Include="Views\Admin\order.html" />
+    <Content Include="Views\Admin\password-meter.html" />
+    <Content Include="Views\Admin\pdf-viewer.html" />
+    <Content Include="Views\Admin\peity.html" />
+    <Content Include="Views\Admin\preloader.html" />
+    <Content Include="Views\Admin\profile.html" />
+    <Content Include="Views\Admin\project-details.html" />
+    <Content Include="Views\Admin\project-list.html" />
+    <Content Include="Views\Admin\register.html" />
+    <Content Include="Views\Admin\review.html" />
+    <Content Include="Views\Admin\rounded-chart.html" />
+    <Content Include="Views\Admin\sparkline.html" />
+    <Content Include="Views\Admin\static-table.html" />
+    <Content Include="Views\Admin\tab-menus.html" />
+    <Content Include="Views\Admin\tabs.html" />
+    <Content Include="Views\Admin\tinymc.html" />
+    <Content Include="Views\Admin\tree-view.html" />
+    <Content Include="Views\Admin\view-mail.html" />
+    <Content Include="Views\Admin\widgets.html" />
+    <Content Include="Views\Admin\x-editable.html" />
+  </ItemGroup>
 
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="fm.EntityFrameworkCore.Relational" Version="2.3.0" />
+    <PackageReference Include="KendoUIProfessional" Version="2019.2.514" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Telerik.UI.for.AspNet.Core" Version="2019.2.514" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\MediaClasses\MediaClasses.csproj" />
+    <ProjectReference Include="..\TestConsole\TestConsole.csproj" />
+    <ProjectReference Include="..\WebAPI\WebAPI.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\kendo-ui\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\css\admin\css\accordions.css" />
+    <None Include="wwwroot\css\admin\css\adminpro-custom-icon.css" />
+    <None Include="wwwroot\css\admin\css\adminstyle.css" />
+    <None Include="wwwroot\css\admin\css\alerts.css" />
+    <None Include="wwwroot\css\admin\css\animate.css" />
+    <None Include="wwwroot\css\admin\css\bootstrap-editable.css" />
+    <None Include="wwwroot\css\admin\css\bootstrap.min.css" />
+    <None Include="wwwroot\css\admin\css\buttons.css" />
+    <None Include="wwwroot\css\admin\css\c3.min.css" />
+    <None Include="wwwroot\css\admin\css\charts.css" />
+    <None Include="wwwroot\css\admin\css\chosen\bootstrap-chosen.css" />
+    <None Include="wwwroot\css\admin\css\chosen\chosen-sprite.png" />
+    <None Include="wwwroot\css\admin\css\chosen\chosen.jquery.js" />
+    <None Include="wwwroot\css\admin\css\code-editor\ambiance.css" />
+    <None Include="wwwroot\css\admin\css\code-editor\codemirror.css" />
+    <None Include="wwwroot\css\admin\css\colorpicker\colorpicker.css" />
+    <None Include="wwwroot\css\admin\css\cropper\cropper.min.css" />
+    <None Include="wwwroot\css\admin\css\data-table\bootstrap-editable.css" />
+    <None Include="wwwroot\css\admin\css\data-table\bootstrap-table.css" />
+    <None Include="wwwroot\css\admin\css\datapicker\datepicker3.css" />
+    <None Include="wwwroot\css\admin\css\datetimepicker.css" />
+    <None Include="wwwroot\css\admin\css\dropzone.css" />
+    <None Include="wwwroot\css\admin\css\duallistbox\bootstrap-duallistbox.min.css" />
+    <None Include="wwwroot\css\admin\css\font-awesome.min.css" />
+    <None Include="wwwroot\css\admin\css\form.css" />
+    <None Include="wwwroot\css\admin\css\form\all-type-forms.css" />
+    <None Include="wwwroot\css\admin\css\form\themesaller-forms.css" />
+    <None Include="wwwroot\css\admin\css\ionRangeSlider\ion.rangeSlider.css" />
+    <None Include="wwwroot\css\admin\css\ionRangeSlider\ion.rangeSlider.skinFlat.css" />
+    <None Include="wwwroot\css\admin\css\ionRangeSlider\sprite-skin-flat.png" />
+    <None Include="wwwroot\css\admin\css\jquery.mCustomScrollbar.min.css" />
+    <None Include="wwwroot\css\admin\css\jvectormap\jquery-jvectormap-2.0.3.css" />
+    <None Include="wwwroot\css\admin\css\Lobibox.min.css" />
+    <None Include="wwwroot\css\admin\css\main.css" />
+    <None Include="wwwroot\css\admin\css\mCSB_buttons.png" />
+    <None Include="wwwroot\css\admin\css\meanmenu.min.css" />
+    <None Include="wwwroot\css\admin\css\modals.css" />
+    <None Include="wwwroot\css\admin\css\normalize.css" />
+    <None Include="wwwroot\css\admin\css\notifications.css" />
+    <None Include="wwwroot\css\admin\css\preloader\preloader-style.css" />
+    <None Include="wwwroot\css\admin\css\responsive.css" />
+    <None Include="wwwroot\css\admin\css\select2-bootstrap.css" />
+    <None Include="wwwroot\css\admin\css\select2.css" />
+    <None Include="wwwroot\css\admin\css\select2.png" />
+    <None Include="wwwroot\css\admin\css\select2\select2.min.css" />
+    <None Include="wwwroot\css\admin\css\summernote.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-eight.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-five.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-four.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-nine.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-one.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-seven.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-six.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-switcher.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-ten.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-three.css" />
+    <None Include="wwwroot\css\admin\css\switcher\color-two.css" />
+    <None Include="wwwroot\css\admin\css\tab-menus.css" />
+    <None Include="wwwroot\css\admin\css\tabs.css" />
+    <None Include="wwwroot\css\admin\css\touchspin\jquery.bootstrap-touchspin.min.css" />
+    <None Include="wwwroot\css\admin\css\tree-viewer\32px.png" />
+    <None Include="wwwroot\css\admin\css\tree-viewer\throbber.gif" />
+    <None Include="wwwroot\css\admin\css\tree-viewer\tree-viewer.css" />
+    <None Include="wwwroot\css\admin\css\typeahead.js-bootstrap.css" />
+    <None Include="wwwroot\css\admin\css\x-editor-style.css" />
+    <None Include="wwwroot\fonts\admin\fonts\adminpro-icon.svg" />
+    <None Include="wwwroot\fonts\admin\fonts\adminpro-icon.ttf" />
+    <None Include="wwwroot\fonts\admin\fonts\adminpro-icon.woff" />
+    <None Include="wwwroot\fonts\admin\fonts\fontawesome-webfont.eot" />
+    <None Include="wwwroot\fonts\admin\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\admin\fonts\fontawesome-webfont.ttf" />
+    <None Include="wwwroot\fonts\admin\fonts\fontawesome-webfont.woff" />
+    <None Include="wwwroot\fonts\admin\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\admin\fonts\FontAwesome.otf" />
+    <None Include="wwwroot\fonts\admin\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="wwwroot\fonts\admin\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\fonts\admin\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="wwwroot\fonts\admin\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="wwwroot\fonts\admin\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\fonts\admin\fonts\summernote.eot" />
+    <None Include="wwwroot\fonts\admin\fonts\summernote.ttf" />
+    <None Include="wwwroot\fonts\admin\fonts\summernote.woff" />
+    <None Include="wwwroot\img\admin\img\clear.png" />
+    <None Include="wwwroot\img\admin\img\cropper\1.jpg" />
+    <None Include="wwwroot\img\admin\img\cropper\Thumbs.db" />
+    <None Include="wwwroot\img\admin\img\favicon.ico" />
+    <None Include="wwwroot\img\admin\img\googlemap\1.png" />
+    <None Include="wwwroot\img\admin\img\googlemap\Thumbs.db" />
+    <None Include="wwwroot\img\admin\img\green1.png" />
+    <None Include="wwwroot\img\admin\img\loading.gif" />
+    <None Include="wwwroot\img\admin\img\logo\log.png" />
+    <None Include="wwwroot\img\admin\img\logo\logo.png" />
+    <None Include="wwwroot\img\admin\img\message\1.jpg" />
+    <None Include="wwwroot\img\admin\img\message\2.jpg" />
+    <None Include="wwwroot\img\admin\img\message\3.jpg" />
+    <None Include="wwwroot\img\admin\img\message\4.jpg" />
+    <None Include="wwwroot\img\admin\img\message\Thumbs.db" />
+    <None Include="wwwroot\img\admin\img\notification\1.jpg" />
+    <None Include="wwwroot\img\admin\img\notification\2.jpg" />
+    <None Include="wwwroot\img\admin\img\notification\3.jpg" />
+    <None Include="wwwroot\img\admin\img\notification\4.jpg" />
+    <None Include="wwwroot\img\admin\img\notification\5.jpg" />
+    <None Include="wwwroot\img\admin\img\notification\6.jpg" />
+    <None Include="wwwroot\img\admin\img\notification\Thumbs.db" />
+    <None Include="wwwroot\img\admin\img\profile\1.jpg" />
+    <None Include="wwwroot\img\admin\img\profile\Thumbs.db" />
+    <None Include="wwwroot\img\admin\img\Thumbs.db" />
+    <None Include="wwwroot\js\admin\js\bootstrap-datetimepicker.js" />
+    <None Include="wwwroot\js\admin\js\bootstrap-editable.js" />
+    <None Include="wwwroot\js\admin\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\admin\js\c3-charts\c3-active.js" />
+    <None Include="wwwroot\js\admin\js\c3-charts\c3.min.js" />
+    <None Include="wwwroot\js\admin\js\c3-charts\d3.min.js" />
+    <None Include="wwwroot\js\admin\js\charts\area-chart.js" />
+    <None Include="wwwroot\js\admin\js\charts\bar-chart.js" />
+    <None Include="wwwroot\js\admin\js\charts\Chart.js" />
+    <None Include="wwwroot\js\admin\js\charts\line-chart.js" />
+    <None Include="wwwroot\js\admin\js\charts\rounded-chart.js" />
+    <None Include="wwwroot\js\admin\js\chat-active\jquery.chat.js" />
+    <None Include="wwwroot\js\admin\js\chosen\chosen-active.js" />
+    <None Include="wwwroot\js\admin\js\chosen\chosen.jquery.js" />
+    <None Include="wwwroot\js\admin\js\code-editor\code-editor-active.js" />
+    <None Include="wwwroot\js\admin\js\code-editor\code-editor.js" />
+    <None Include="wwwroot\js\admin\js\code-editor\codemirror.js" />
+    <None Include="wwwroot\js\admin\js\colorpicker\color-picker-active.js" />
+    <None Include="wwwroot\js\admin\js\colorpicker\jquery.spectrum.min.js" />
+    <None Include="wwwroot\js\admin\js\counterup\counterup-active.js" />
+    <None Include="wwwroot\js\admin\js\counterup\jquery.counterup.min.js" />
+    <None Include="wwwroot\js\admin\js\counterup\waypoints.min.js" />
+    <None Include="wwwroot\js\admin\js\cropper\cropper-actice.js" />
+    <None Include="wwwroot\js\admin\js\cropper\cropper.min.js" />
+    <None Include="wwwroot\js\admin\js\data-map\bootstrap3-typeahead.min.js" />
+    <None Include="wwwroot\js\admin\js\data-map\d3.min.js" />
+    <None Include="wwwroot\js\admin\js\data-map\data-maps-active.js" />
+    <None Include="wwwroot\js\admin\js\data-map\datamaps.all.min.js" />
+    <None Include="wwwroot\js\admin\js\data-map\topojson.js" />
+    <None Include="wwwroot\js\admin\js\data-table\bootstrap-editable.js" />
+    <None Include="wwwroot\js\admin\js\data-table\bootstrap-table-cookie.js" />
+    <None Include="wwwroot\js\admin\js\data-table\bootstrap-table-editable.js" />
+    <None Include="wwwroot\js\admin\js\data-table\bootstrap-table-export.js" />
+    <None Include="wwwroot\js\admin\js\data-table\bootstrap-table-key-events.js" />
+    <None Include="wwwroot\js\admin\js\data-table\bootstrap-table-resizable.js" />
+    <None Include="wwwroot\js\admin\js\data-table\bootstrap-table.js" />
+    <None Include="wwwroot\js\admin\js\data-table\colResizable-1.5.source.js" />
+    <None Include="wwwroot\js\admin\js\data-table\data-table-active.js" />
+    <None Include="wwwroot\js\admin\js\data-table\tableExport.js" />
+    <None Include="wwwroot\js\admin\js\datapicker\bootstrap-datepicker.js" />
+    <None Include="wwwroot\js\admin\js\datapicker\datepicker-active.js" />
+    <None Include="wwwroot\js\admin\js\datepicker-active.js" />
+    <None Include="wwwroot\js\admin\js\dropzone.js" />
+    <None Include="wwwroot\js\admin\js\duallistbox\duallistbox.active.js" />
+    <None Include="wwwroot\js\admin\js\duallistbox\jquery.bootstrap-duallistbox.js" />
+    <None Include="wwwroot\js\admin\js\flot\Chart.min.js" />
+    <None Include="wwwroot\js\admin\js\flot\dashtwo-flot-active.js" />
+    <None Include="wwwroot\js\admin\js\flot\flot-active.js" />
+    <None Include="wwwroot\js\admin\js\flot\jquery.flot.js" />
+    <None Include="wwwroot\js\admin\js\flot\jquery.flot.pie.js" />
+    <None Include="wwwroot\js\admin\js\flot\jquery.flot.resize.js" />
+    <None Include="wwwroot\js\admin\js\flot\jquery.flot.spline.js" />
+    <None Include="wwwroot\js\admin\js\flot\jquery.flot.symbol.js" />
+    <None Include="wwwroot\js\admin\js\flot\jquery.flot.time.js" />
+    <None Include="wwwroot\js\admin\js\flot\jquery.flot.tooltip.min.js" />
+    <None Include="wwwroot\js\admin\js\flot\widget-flot-chart-active.js" />
+    <None Include="wwwroot\js\admin\js\form-active.js" />
+    <None Include="wwwroot\js\admin\js\google.maps\google.maps-active.js" />
+    <None Include="wwwroot\js\admin\js\icheck\icheck-active.js" />
+    <None Include="wwwroot\js\admin\js\icheck\icheck.min.js" />
+    <None Include="wwwroot\js\admin\js\input-mask\jasny-bootstrap.min.js" />
+    <None Include="wwwroot\js\admin\js\ionRangeSlider\ion.rangeSlider.active.js" />
+    <None Include="wwwroot\js\admin\js\ionRangeSlider\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\js\admin\js\jquery-ui.min.js" />
+    <None Include="wwwroot\js\admin\js\jquery.form.min.js" />
+    <None Include="wwwroot\js\admin\js\jquery.maskedinput.min.js" />
+    <None Include="wwwroot\js\admin\js\jquery.mCustomScrollbar.concat.min.js" />
+    <None Include="wwwroot\js\admin\js\jquery.meanmenu.js" />
+    <None Include="wwwroot\js\admin\js\jquery.mockjax.js" />
+    <None Include="wwwroot\js\admin\js\jquery.scrollUp.min.js" />
+    <None Include="wwwroot\js\admin\js\jquery.sticky.js" />
+    <None Include="wwwroot\js\admin\js\jquery.validate.min.js" />
+    <None Include="wwwroot\js\admin\js\jvectormap\jquery-jvectormap-2.0.2.min.js" />
+    <None Include="wwwroot\js\admin\js\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <None Include="wwwroot\js\admin\js\jvectormap\jvectormap-active.js" />
+    <None Include="wwwroot\js\admin\js\knob\jquery.knob.js" />
+    <None Include="wwwroot\js\admin\js\knob\knob-active.js" />
+    <None Include="wwwroot\js\admin\js\Lobibox.js" />
+    <None Include="wwwroot\js\admin\js\main.js" />
+    <None Include="wwwroot\js\admin\js\map\france_departments.js" />
+    <None Include="wwwroot\js\admin\js\map\jquery.mapael.js" />
+    <None Include="wwwroot\js\admin\js\map\map-active.js" />
+    <None Include="wwwroot\js\admin\js\map\raphael.min.js" />
+    <None Include="wwwroot\js\admin\js\map\usa_states.js" />
+    <None Include="wwwroot\js\admin\js\map\world_countries.js" />
+    <None Include="wwwroot\js\admin\js\masking-active.js" />
+    <None Include="wwwroot\js\admin\js\mock-active.js" />
+    <None Include="wwwroot\js\admin\js\modal-active.js" />
+    <None Include="wwwroot\js\admin\js\moment.min.js" />
+    <None Include="wwwroot\js\admin\js\multiple-email\multiple-email-active.js" />
+    <None Include="wwwroot\js\admin\js\notification-active.js" />
+    <None Include="wwwroot\js\admin\js\password-meter\password-meter-active.js" />
+    <None Include="wwwroot\js\admin\js\password-meter\pwstrength-bootstrap.min.js" />
+    <None Include="wwwroot\js\admin\js\password-meter\zxcvbn.js" />
+    <None Include="wwwroot\js\admin\js\pdf\jquery.media.js" />
+    <None Include="wwwroot\js\admin\js\pdf\pdf-active.js" />
+    <None Include="wwwroot\js\admin\js\peity\jquery.peity.min.js" />
+    <None Include="wwwroot\js\admin\js\peity\peity-active.js" />
+    <None Include="wwwroot\js\admin\js\rangle-slider\jquery-ui-1.10.4.custom.min.js" />
+    <None Include="wwwroot\js\admin\js\rangle-slider\jquery-ui-touch-punch.min.js" />
+    <None Include="wwwroot\js\admin\js\rangle-slider\rangle-active.js" />
+    <None Include="wwwroot\js\admin\js\rounded-counter\jquery.appear.js" />
+    <None Include="wwwroot\js\admin\js\rounded-counter\jquery.countdown.min.js" />
+    <None Include="wwwroot\js\admin\js\rounded-counter\jquery.knob.js" />
+    <None Include="wwwroot\js\admin\js\rounded-counter\knob-active.js" />
+    <None Include="wwwroot\js\admin\js\select2.js" />
+    <None Include="wwwroot\js\admin\js\select2\select2-active.js" />
+    <None Include="wwwroot\js\admin\js\select2\select2.full.min.js" />
+    <None Include="wwwroot\js\admin\js\skycons\skycons.active.js" />
+    <None Include="wwwroot\js\admin\js\skycons\skycons.min.js" />
+    <None Include="wwwroot\js\admin\js\sparkline\jquery.sparkline.min.js" />
+    <None Include="wwwroot\js\admin\js\sparkline\sparkline-active.js" />
+    <None Include="wwwroot\js\admin\js\summernote-active.js" />
+    <None Include="wwwroot\js\admin\js\summernote.min.js" />
+    <None Include="wwwroot\js\admin\js\switcher\styleswitch.js" />
+    <None Include="wwwroot\js\admin\js\switcher\switch-active.js" />
+    <None Include="wwwroot\js\admin\js\todo\jquery.todo.js" />
+    <None Include="wwwroot\js\admin\js\touchspin\jquery.bootstrap-touchspin.min.js" />
+    <None Include="wwwroot\js\admin\js\touchspin\touchspin-active.js" />
+    <None Include="wwwroot\js\admin\js\tree-line\jstree.active.js" />
+    <None Include="wwwroot\js\admin\js\tree-line\jstree.min.js" />
+    <None Include="wwwroot\js\admin\js\typeahead.js" />
+    <None Include="wwwroot\js\admin\js\typeaheadjs.js" />
+    <None Include="wwwroot\js\admin\js\vendor\jquery-1.11.3.min.js" />
+    <None Include="wwwroot\js\admin\js\vendor\modernizr-2.8.3.min.js" />
+    <None Include="wwwroot\js\admin\js\wow\wow.min.js" />
+    <None Include="wwwroot\js\admin\js\xediable-active.js" />
+    <None Include="wwwroot\pdf\admin\pdf\Sharmin.pdf" />
+    <None Include="wwwroot\sounds\admin\sounds\sound1.ogg" />
+    <None Include="wwwroot\sounds\admin\sounds\sound2.ogg" />
+    <None Include="wwwroot\sounds\admin\sounds\sound3.ogg" />
+    <None Include="wwwroot\sounds\admin\sounds\sound4.ogg" />
+    <None Include="wwwroot\sounds\admin\sounds\sound5.ogg" />
+    <None Include="wwwroot\sounds\admin\sounds\sound6.ogg" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Views\Admin\Dashboard2.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

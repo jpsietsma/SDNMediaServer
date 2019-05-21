@@ -16,12 +16,7 @@ namespace MediaClasses.Classes
         /// <summary>
         /// String of the full path to the file on the filesystem.
         /// </summary>
-        string FileFullPath { get; set; }
-
-        /// <summary>
-        /// FileInfo object containing details about the file.
-        /// </summary>
-        FileInfo FileInfo { get; set; }
+        string FilePath { get; set; }
 
         /// <summary>
         /// Name of the file.
@@ -36,13 +31,7 @@ namespace MediaClasses.Classes
         /// <summary>
         /// Size of the file on disk in bytes
         /// </summary>
-        decimal FileSize { get; set; }
+        long FileSize { get; set; }
 
-        /// <summary>
-        /// Get the size of the file in a certain measured unit
-        /// </summary>
-        /// <param name="_format">SizeFormat object to determine conversion unit</param>
-        /// <returns>double representing the file size in the selected unit</returns>
-        double GetFileSize(MediaFile.SizeFormat? _format);
     }
 }

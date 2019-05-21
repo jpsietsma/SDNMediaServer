@@ -13,7 +13,7 @@ namespace MediaClasses.ViewModels
     /// <summary>
     /// Class representing the view model for a media file.  This is the base class for all others within SDN Media Server.
     /// </summary>
-    public class MediaFileViewModel
+    public class MediaFileViewModel : IMediaFile
     {
         /// <summary>
         /// Database ID for the entity record
@@ -30,12 +30,12 @@ namespace MediaClasses.ViewModels
         /// <summary>
         /// Full file system path to the file.
         /// </summary>
-        public string FileFullPath { get; set; }
+        public string FilePath { get; set; }
 
         /// <summary>
         /// Size of the media file in bytes
         /// </summary>
-        public decimal FileSize { get; set; }
+        public long FileSize { get; set; }
 
         /// <summary>
         /// Root directory where the file resides
@@ -58,8 +58,8 @@ namespace MediaClasses.ViewModels
         /// <param name="_data">MediaFile object representing the scanned file</param>
         public MediaFileViewModel(MediaFile _data)
         {
-            FileInfo = new FileInfo(_data.FileFullPath);
-            FileFullPath = FileInfo.FullName;
+            FileInfo = new FileInfo(_data.FilePath);
+            FilePath = FileInfo.FullName;
             FileName = FileInfo.Name;                     
             FileSize = FileInfo.Length;
             FileRootDirectory = FileInfo.DirectoryName;
