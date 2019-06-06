@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WebUI.DatabaseContext
 {
-    public partial class MediaDrives : IMediaDrives
+    public partial class MediaDrives
     {
         public int PkDriveId { get; set; }
         public string DriveLetter { get; set; }

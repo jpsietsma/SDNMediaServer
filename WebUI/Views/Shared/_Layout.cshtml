@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/kendo-ui/styles/kendo.common-nova.min.css" />
         <link rel="stylesheet" href="~/lib/kendo-ui/styles/kendo.nova.min.css" />
+        <link rel="stylesheet" href="~/lib/kendo-ui/styles/kendo.bootstrap-v4.min.css" type="text/css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -24,6 +25,11 @@
         <link rel="stylesheet"
               href="https://kendo.cdn.telerik.com/2019.1.115/styles/kendo.nova.min.css"
               asp-fallback-href="~/lib/kendo-ui/styles/kendo.nova.min.css"
+              asp-fallback-test-class="k-theme-test-class"
+              asp-fallback-test-property="opacity" asp-fallback-test-value="0" />
+        <link rel="stylesheet"
+              href="https://kendo.cdn.telerik.com/2019.2.514/styles/kendo.bootstrap-v4.min.css"
+              asp-fallback-href="~/lib/kendo-ui/styles/kendo.bootstrap-v4.min.css"
               asp-fallback-test-class="k-theme-test-class"
               asp-fallback-test-property="opacity" asp-fallback-test-value="0" />
     </environment>

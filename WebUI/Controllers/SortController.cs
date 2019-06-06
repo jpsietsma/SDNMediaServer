@@ -25,7 +25,7 @@ namespace WebUI.Controllers
 
                     if (a == 0)
                     {
-                        DatabaseContext.SortQueue _new = new DatabaseContext.SortQueue
+                        SortQueue _new = new SortQueue
                         {
                             Classification = "Sort",
                             ClassificationDate = DateTime.Now.Date.ToString(),

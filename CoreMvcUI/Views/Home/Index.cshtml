@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="placeholders mb-2">
+    <div class="row d-flex justify-content-start">
+        <div class="col-md-2 mb-3 placeholder">
+            <img class="img-fluid " alt="200x200" src="~/Images/200.png">
+        </div>
+        <div class="col-md-3">
+            <h2>Lorem ipsum dolor sit amet...</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book.
+            </p>
+            <p>
+                <kendo-button name="PrimaryButton" class="textButton k-primary">Primary Button</kendo-button>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <h2>&nbsp;</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book.
+            </p>
+            <p>
+                <kendo-button name="TextButton" class="textButton">Button</kendo-button>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <h2>&nbsp;</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book.
+            </p>
+            <p>
+                <kendo-button name="Button" class="textButton">Button</kendo-button>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <kendo-grid name="grid" height="550">
+            <columns>
+                <column field="OrderID" title="Order ID">
+                    <filterable enabled="false"></filterable>
+                </column>
+                <column field="Freight" title="Freight" />
+                <column field="OrderDate" title="Order Date" format="{0:MM/dd/yyyy}" />
+                <column field="ShipName" title="Ship Name" />
+                <column field="ShipCity" title="Ship City" />
+            </columns>
+            <scrollable enabled="true" />
+            <sortable enabled="true" />
+            <pageable enabled="true" />
+            <filterable enabled="true" />
+            <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+                <transport>
+                    <read url="@Url.Action("Orders_Read", "Grid")" />
+                </transport>
+            </datasource>
+        </kendo-grid>
+    </div>
+</div>

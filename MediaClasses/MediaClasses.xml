@@ -237,6 +237,21 @@
             File of type MPEG-4 Part 14
             </summary>
         </member>
+        <member name="T:MediaClasses.Classes.Genre">
+            <summary>
+            A class used to hold genre data from an api result
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.Genre.id">
+            <summary>
+            TheMovieDB.org genre id
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.Genre.name">
+            <summary>
+            Display name of the genre
+            </summary>
+        </member>
         <member name="T:MediaClasses.Classes.SortMediaFile">
             <summary>
             Class representing a media file in the sort folder, not yet classified into a TelevisionEpisode

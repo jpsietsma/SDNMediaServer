@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediaClasses.Classes;
+using MediaClasses.Classes.APIClasses;
 using MediaClasses.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ namespace WebUI.Config.MappedProfiles
             CreateMap<MediaFile, MediaFileViewModel>();
 
             CreateMap<SortMediaFile, SortFileViewModel>();
-
 
             // Use CreateMap... Etc.. here (Profile methods are the same as configuration methods)
 

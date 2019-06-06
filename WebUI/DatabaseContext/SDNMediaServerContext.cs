@@ -17,6 +17,7 @@ namespace WebUI.DatabaseContext
 
         public virtual DbSet<MediaDrives> MediaDrives { get; set; }
         public virtual DbSet<SortQueue> SortQueue { get; set; }
+        public virtual DbSet<UserPriorityShows> UserPriorityShows { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -60,27 +61,36 @@ namespace WebUI.DatabaseContext
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.FileName)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                entity.Property(e => e.ClassificationDate).HasMaxLength(150);
+
+                entity.Property(e => e.FileName).IsRequired();
 
                 entity.Property(e => e.FilePath).IsRequired();
 
-                entity.Property(e => e.ShowDrive)
-                    .IsRequired()
-                    .HasMaxLength(10);
+                entity.Property(e => e.ShowDrive).HasMaxLength(10);
+
+                entity.Property(e => e.ShowName).HasMaxLength(100);
+
+                entity.Property(e => e.ShowSeason).HasMaxLength(25);
+            });
+
+            modelBuilder.Entity<UserPriorityShows>(entity =>
+            {
+                entity.HasKey(e => e.PkPriorityId);
+
+                entity.ToTable("User_PriorityShows");
+
+                entity.Property(e => e.PkPriorityId).HasColumnName("pk_PriorityID");
+
+                entity.Property(e => e.AddedOn)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.FkShowId).HasColumnName("fk_ShowID");
 
                 entity.Property(e => e.ShowName)
                     .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.ShowSeason)
-                    .IsRequired()
-                    .HasMaxLength(25);
-
-                entity.Property(e => e.ClassificationDate)
-                    .IsRequired()
-                    .HasMaxLength(150);
+                    .HasMaxLength(255);
             });
         }
     }

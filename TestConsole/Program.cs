@@ -2,6 +2,7 @@
 using MediaClasses.Classes;
 using MediaClasses.Exceptions;
 using MediaClasses.ViewModels;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using System.Web;
 using static MediaClasses.Config.Configuration;
+using Newtonsoft.Json;
+using MediaClasses.Classes.APIClasses;
 
 namespace TestConsole
 {
@@ -189,8 +193,60 @@ namespace TestConsole
 
             //Console.ReadLine();
 
+            APISearchResults results = SearchShows(@"Cops");
 
+            List<Genre> genres = GetGenres(new List<int>());
+
+            Console.WriteLine(results.results.Where(x => x.ExactMatch == true).FirstOrDefault().name);       
+            Console.ReadLine();
 
         }
+
+        public static APISearchResults SearchShows(string queryShowName, int page = 1, string apiKey = @"c0604d69b7df230f03504bdc8475887a")
+        {
+            try
+            {
+                RestClient client = new RestClient($@"https://api.themoviedb.org/3/search/tv?page={ page }&query={ queryShowName }&language=en-US&api_key={ apiKey }");
+
+                IRestRequest request = new RestRequest(Method.GET).AddParameter("undefined", "{}", ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+
+                var _results = JsonConvert.DeserializeObject<APISearchResults>(response.Content);
+
+                foreach (APIResult _result in _results.results)
+                {
+                    if (_result.name == queryShowName)
+                    {
+                        _result.ExactMatch = true;
+                    }
+                }
+
+                return _results;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static List<Genre> GetGenres(List<int> _genreIDs, string apiKey = @"c0604d69b7df230f03504bdc8475887a")
+        {
+            try
+            {
+                RestClient client = new RestClient($@"https://api.themoviedb.org/3/genre/tv/list?api_key={ apiKey }&language=en-US");
+
+                IRestRequest request = new RestRequest(Method.GET).AddParameter("undefined", "{}", ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+
+                var _results = JsonConvert.DeserializeObject<List<Genre>>(response.Content);
+
+                return _results;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

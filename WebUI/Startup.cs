@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebUI.Config.MappedProfiles;
 using Newtonsoft.Json.Serialization;
+using MediaClasses.Classes;
 
 namespace WebUI
 {
@@ -37,6 +38,9 @@ namespace WebUI
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //Use dependency injection within our application
+            services.AddTransient<ISortMediaFile, SortMediaFile>();
 
             // Maintain property names during serialization. See:
             // https://github.com/aspnet/Announcements/issues/194

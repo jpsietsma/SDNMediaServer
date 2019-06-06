@@ -89,13 +89,8 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\lib\kendo-ui\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <None Include="wwwroot\css\admin\css\accordions.css" />
-    <None Include="wwwroot\css\admin\css\adminpro-custom-icon.css" />
+    <None Include="wwwroot\css\admin\css\adminpro-custon-icon.css" />
     <None Include="wwwroot\css\admin\css\adminstyle.css" />
     <None Include="wwwroot\css\admin\css\alerts.css" />
     <None Include="wwwroot\css\admin\css\animate.css" />
