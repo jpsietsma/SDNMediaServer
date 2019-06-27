@@ -83,7 +83,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MediaClasses\MediaClasses.csproj" />
-    <ProjectReference Include="..\TestConsole\TestConsole.csproj" />
     <ProjectReference Include="..\WebAPI\WebAPI.csproj" />
   </ItemGroup>
 

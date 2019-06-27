@@ -8,7 +8,7 @@ namespace MediaClasses.Classes
     /// <summary>
     /// A class used to hold genre data from an api result
     /// </summary>
-    public class Genre
+    public class MediaGenreViewModel
     {
         /// <summary>
         /// TheMovieDB.org genre id

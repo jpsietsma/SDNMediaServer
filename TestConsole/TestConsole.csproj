@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MediaClasses\MediaClasses.csproj" />
+    <ProjectReference Include="..\WebUI\WebUI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

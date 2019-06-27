@@ -4,6 +4,12 @@
         <name>MediaClasses</name>
     </assembly>
     <members>
+        <member name="M:MediaClasses.Classes.APIClasses.APIResult.ToShowViewModel">
+            <summary>
+            Get a DailyShowAiringViewModel object representing the current api result
+            </summary>
+            <returns>DailyShowAiringViewModel representing the api result from the daily airing show feed.</returns>
+        </member>
         <member name="T:MediaClasses.Classes.IMediaFile">
             <summary>
             Represents any type of media file in any state within the system.  Base interface for all media files
@@ -102,6 +108,21 @@
             </summary>
             <param name="_path">string full file path to the file.</param>
             <returns></returns>
+        </member>
+        <member name="T:MediaClasses.Classes.MediaDriveCollection">
+            <summary>
+            Class that represents a collection of MediaDrive objects.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.Classes.MediaDriveCollection.Drives">
+            <summary>
+            Collection of Media Drives being monitored by the SDN Media Server
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Classes.MediaDriveCollection.#ctor">
+            <summary>
+            Instantiate a new MediaDriveCollection object.
+            </summary>
         </member>
         <member name="T:MediaClasses.Classes.MediaFile">
             <summary>
@@ -237,17 +258,17 @@
             File of type MPEG-4 Part 14
             </summary>
         </member>
-        <member name="T:MediaClasses.Classes.Genre">
+        <member name="T:MediaClasses.Classes.MediaGenreViewModel">
             <summary>
             A class used to hold genre data from an api result
             </summary>
         </member>
-        <member name="P:MediaClasses.Classes.Genre.id">
+        <member name="P:MediaClasses.Classes.MediaGenreViewModel.id">
             <summary>
             TheMovieDB.org genre id
             </summary>
         </member>
-        <member name="P:MediaClasses.Classes.Genre.name">
+        <member name="P:MediaClasses.Classes.MediaGenreViewModel.name">
             <summary>
             Display name of the genre
             </summary>
@@ -483,6 +504,34 @@
             <param name="_file">MediaFile to convert</param>
             <returns>Converted SortMediaFile object</returns>
         </member>
+        <member name="T:MediaClasses.Lib.LibraryStorageLib">
+            <summary>
+            Class for dealing with various functions and processes regarding media libraries and file storeage within the system
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Lib.LibraryStorageLib.GetAvailableDriveSpace(MediaClasses.ViewModels.MediaDrive)">
+            <summary>
+            Get the available space on a system hard drive used to store media
+            </summary>
+            <returns>decimal representing available space in MB</returns>
+        </member>
+        <member name="M:MediaClasses.Lib.LibraryStorageLib.IsCorrectDriveType(System.Char,MediaClasses.Enum.DriveTypes)">
+            <summary>
+            Check if the Drive with the matching supplied letter has the correct DriveTypes value
+            </summary>
+            <param name="_driveLetter">Letter of the MediaDrive to check</param>
+            <param name="_type">Expected DriveTypes value of the drive represented by the letter</param>
+            <returns>True if drive represented by letter has the provided DriveTypes value, otherwise false.</returns>
+        </member>
+        <member name="M:MediaClasses.Lib.LibraryStorageLib.IsCorrectDriveAiringType(MediaClasses.ViewModels.MediaDrive,MediaClasses.Enum.ShowAiringStatus,System.Decimal@)">
+            <summary>
+            Check if the supplied MediaDrive holds the correct ShowAiringStatus value.  Also set out decimal variable to MB of space remaining.
+            </summary>
+            <param name="_drive">MediaDrive object to check</param>
+            <param name="_status">Expected ShowAiringStatus value of MediaDrive object</param>
+            <param name="_remainingSpace">Out decimal to hold available space on MediaDrive object.</param>
+            <returns>True is correct type, otherwise false.</returns>
+        </member>
         <member name="T:MediaClasses.Lib.MediaConversion">
             <summary>
             Class to convert between media classes.
@@ -501,6 +550,139 @@
             </summary>
             <param name="_mediaFile">Media file to convert</param>
             <returns>Converted SortMediaFile object</returns>
+        </member>
+        <member name="T:MediaClasses.Lib.SortProcessing">
+            <summary>
+            Static class to handle sort processing and other sort folder functions.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Lib.SortProcessing.IsExistingShow(System.String)">
+            <summary>
+            Does this show exist already on a media drive?
+            </summary>
+            <param name="showName">name of the show to search</param>
+            <returns>true if show exists on a media drive, false if not</returns>
+        </member>
+        <member name="M:MediaClasses.Lib.SortProcessing.GetMediaDrives">
+            <summary>
+            Get a list of media drives, their media type, and media airing status (tv shows)
+            </summary>
+            <returns>List of tuple with drive letter, media type, and media airing status</returns>
+        </member>
+        <member name="T:MediaClasses.Lib.TMDBApiLib">
+            <summary>
+            Class for making requests to and from the TheMovieDB API.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.Lib.TMDBApiLib.SearchShows(System.String,System.Int32,System.String)">
+            <summary>
+            Find the show information on the searched string
+            </summary>
+            <param name="queryShowName">Show name to search</param>
+            <param name="page">Get the results from a specified page, default is 1</param>
+            <param name="apiKey">Developer API key for accessing TheMovieDB API and making requests</param>
+            <returns>APISearchResults object with the results from the API query</returns>
+        </member>
+        <member name="M:MediaClasses.Lib.TMDBApiLib.GetGenres(System.String)">
+            <summary>
+            Get a list of Television Show Genres
+            </summary>
+            <param name="apiKey">TheMovieDB developer API key</param>
+            <returns>List of genre view models representing the genres available</returns>
+        </member>
+        <member name="M:MediaClasses.Lib.TMDBApiLib.GetGenres(System.Collections.Generic.List{System.Int32},System.String)">
+            <summary>
+            Get a list of Television Show genres using the provided list of genre ids
+            </summary>
+            <param name="_genreIds">List of genre ids used to get view models</param>
+            <param name="apiKey">TheMovieDB developer API key</param>
+            <returns>List of genre view models populated with the results</returns>
+        </member>
+        <member name="M:MediaClasses.Lib.TMDBApiLib.GetTodaysAiringShows(System.String)">
+            <summary>
+            Get the shows that are scheduled to air new episodes for today
+            </summary>
+            <param name="apiKey">TheMovieDB developer API key</param>
+            <returns></returns>
+        </member>
+        <member name="M:MediaClasses.Lib.TMDBApiLib.IsAiringToday(System.String,System.String)">
+            <summary>
+            Determine if a show is scheduled to air a new episode today
+            </summary>
+            <param name="showName">name of show to check</param>
+            <param name="apiKey">TheMovieDB developer API key</param>
+            <returns>true if show is scheduled to air new episode, false if not</returns>
+        </member>
+        <member name="M:MediaClasses.Lib.TMDBApiLib.IsAiringToday(System.String,MediaClasses.Classes.APIClasses.DailyAiringApiResult)">
+            <summary>
+            Determine if a show is airing by querying a previous API call's results
+            </summary>
+            <param name="showName">Name of the show to search</param>
+            <param name="_data">Results from prior api call to query</param>
+            <returns>True if show is set to air today, otherwise false.</returns>
+        </member>
+        <member name="T:MediaClasses.ViewModels.MediaDrive">
+            <summary>
+            Represents a system hard drive used to stored a type of media files.
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaDrive.DriveLetter">
+            <summary>
+            System drive letter of the hard drive
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaDrive.MediaAiringStatus">
+            <summary>
+            Status of whether the drive holds active shows or ended shows
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaDrive.DriveType">
+            <summary>
+            Type of media stored on the drive
+            </summary>
+        </member>
+        <member name="P:MediaClasses.ViewModels.MediaDrive.MediaRootPath">
+            <summary>
+            The path to the root folder where media is stored on this drive
+            </summary>
+        </member>
+        <member name="M:MediaClasses.ViewModels.MediaDrive.#ctor(System.IO.DirectoryInfo)">
+            <summary>
+            Create a new instance of a media drive from a DirectoryInfo object.
+            </summary>
+            <param name="_info">DirectoryInfo object to use</param>
+        </member>
+        <member name="M:MediaClasses.ViewModels.MediaDrive.#ctor(System.Char,MediaClasses.Enum.DriveTypes)">
+            <summary>
+            Create a new instance of a media drive from a drive letter and DriveType
+            </summary>
+            <param name="_driveLetter">Drive letter to use</param>
+            <param name="_driveType">DriveTypes.DriveType to use</param>
+        </member>
+        <member name="M:MediaClasses.ViewModels.MediaDrive.#ctor(System.String)">
+            <summary>
+            Create a new instance of a media drive from a file path as a string
+            </summary>
+            <param name="_mediaPath">string file path to use</param>
+        </member>
+        <member name="M:MediaClasses.ViewModels.MediaDrive.#ctor">
+            <summary>
+            Create a new instance of a media drive.
+            </summary>
+        </member>
+        <member name="M:MediaClasses.ViewModels.MediaDrive.GetMediaDrives(System.Nullable{MediaClasses.Enum.DriveTypes},System.Boolean)">
+            <summary>
+            Get a list of tuples representing media drives, with values for drive letter, media type, and media airing status.  
+            </summary>
+            <param name="_mediaType">Type of media stored on the drive.  Ignored if getting all types.</param>
+            <param name="_getAllTypes">True if all drives should be returned or false if just ones with the specified media type </param>
+            <returns>List of tuples containing drive letter, drive media type, and media airing status.</returns>
+        </member>
+        <member name="M:MediaClasses.ViewModels.MediaDrive.GetMediaDrives">
+            <summary>
+            Get the media drives from the temporary static array, upgrade to database later on.
+            </summary>
+            <returns>List of tuples containing the drive letter, media type stored on the drive, and boolean determining if the drive stores active shows or not</returns>
         </member>
         <member name="T:MediaClasses.ViewModels.MediaFileViewModel">
             <summary>
@@ -551,6 +733,11 @@
         <member name="M:MediaClasses.ViewModels.MediaFileViewModel.#ctor">
             <summary>
             Create a new instance of the MediaFile class object.
+            </summary>
+        </member>
+        <member name="T:MediaClasses.ViewModels.ShowMetaDataViewModel">
+            <summary>
+            Holds meta data returned for a show from an API call.
             </summary>
         </member>
         <member name="T:WebUI.DatabaseContext.MediaDrive">

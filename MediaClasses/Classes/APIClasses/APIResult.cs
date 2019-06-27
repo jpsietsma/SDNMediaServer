@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MediaClasses.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -95,6 +96,15 @@ namespace MediaClasses.Classes.APIClasses
             {
 
             };
+        }
+
+        /// <summary>
+        /// Get a DailyShowAiringViewModel object representing the current api result
+        /// </summary>
+        /// <returns>DailyShowAiringViewModel representing the api result from the daily airing show feed.</returns>
+        public DailyShowAiringViewModel ToShowViewModel()
+        {
+            return new DailyShowAiringViewModel { id = id, name = name, first_air_date = Convert.ToDateTime(first_air_date) };
         }
 
     }

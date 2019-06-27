@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MediaClasses.ViewModels;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace MediaClasses.Classes.APIClasses
                 
         public List<int> genre_ids { get; set; }
 
-        public List<Genre> Genres { get; set; }
+        public List<GenreViewModel> genres { get; set; }
 
         [DisplayName("ShowName")]
         public string name { get; set; }
@@ -48,11 +49,11 @@ namespace MediaClasses.Classes.APIClasses
             overview = _metaData.overview;
             poster_path = _metaData.poster_path;
 
-            Genres.AddRange(GetGenres(genre_ids));
+            genres.AddRange(GetGenres(genre_ids));
 
         }
 
-        private List<Genre> GetGenres(List<int> _genreIDs, string apiKey = @"c0604d69b7df230f03504bdc8475887a")
+        private List<GenreViewModel> GetGenres(string apiKey = @"c0604d69b7df230f03504bdc8475887a")
         {
             try
             {
@@ -61,7 +62,7 @@ namespace MediaClasses.Classes.APIClasses
                 IRestRequest request = new RestRequest(Method.GET).AddParameter("undefined", "{}", ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);
 
-                var _results = JsonConvert.DeserializeObject<Genre>(response.Content);
+                var _results = JsonConvert.DeserializeObject<List<GenreViewModel>>(response.Content);
 
                 return _results;
             }
@@ -70,6 +71,38 @@ namespace MediaClasses.Classes.APIClasses
                 throw new Exception(ex.Message);
             }
         }
+
+        private List<GenreViewModel> GetGenres(List<int> _genreIds, string apiKey = @"c0604d69b7df230f03504bdc8475887a")
+        {
+            try
+            {
+                RestClient client = new RestClient($@"https://api.themoviedb.org/3/genre/tv/list?api_key={ apiKey }&language=en-US");
+
+                IRestRequest request = new RestRequest(Method.GET).AddParameter("undefined", "{}", ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+
+                var _results = JsonConvert.DeserializeObject<List<GenreViewModel>>(response.Content);
+                List<string> _matchingGenreNames = new List<string>();
+
+                foreach (GenreViewModel _genre in _results)
+                {
+                    if (!_genreIds.Contains(_genre.id))
+                    {
+                        _results.Remove(_genre);
+                    }
+                }
+
+                return _results;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+
+
     }
 
 

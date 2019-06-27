@@ -21,6 +21,7 @@ namespace MediaClasses.Classes
             /// <summary>
             /// Database ID for the entity
             /// </summary>
+            [Key]
             public int Id { get; private set; }
 
             /// <summary>
@@ -58,12 +59,12 @@ namespace MediaClasses.Classes
             /// <summary>
             /// Create a new instance of the MediaFile class object.
             /// </summary>
-            /// <param name="_file">Path to file used to populate properties.</param>
-            public MediaFile(string _file)
+            /// <param name="_filePath">Path to file used to populate properties.</param>
+            public MediaFile(string _filePath)
             {
-                FileInfo = new FileInfo(_file);
+                FileInfo = new FileInfo(_filePath);
                 FilePath = FileInfo.FullName;
-                FileName = FileInfo.Name;
+                FileName = NameFromPath(FilePath);
             
                 FileSize = FileInfo.Length;
                 FileRootDirectory = FileInfo.DirectoryName;
@@ -73,12 +74,12 @@ namespace MediaClasses.Classes
             /// <summary>
             /// Create a new instance of the MediaFile class object.
             /// </summary>
-            /// <param name="_file">FileInfo object reference used to populate properties.</param>
-            public MediaFile(FileInfo _file)
+            /// <param name="_info">FileInfo object reference used to populate properties.</param>
+            public MediaFile(FileInfo _info)
         {
-            FileInfo = _file;
+            FileInfo = _info;
             FilePath = FileInfo.FullName;
-            FileName = FileInfo.Name;
+            FileName = NameFromPath(FilePath);
             FileSize = FileInfo.Length;
             FileRootDirectory = FileInfo.DirectoryName;
             FileCreated = FileInfo.CreationTime;
@@ -194,7 +195,7 @@ namespace MediaClasses.Classes
             /// <summary>
             /// Enum representing valid extensions (file types) for media files
             /// </summary>
-            public enum ValidMediaFileTypes
+            public enum ValidMediaFileExtensions
         {
             /// <summary>
             /// File of type Matroska Video
@@ -216,6 +217,42 @@ namespace MediaClasses.Classes
             /// </summary>
             MP4
         }
+
+            /// <summary>
+            /// Enum representing the different types of media classification for sort files.
+            /// </summary>
+            public enum MediaTypeClassification
+            {
+                /// <summary>
+                /// File is in the sort folder and has yet to be classified.  This is the default classification type all files begin as.
+                /// </summary>
+                SORT,
+
+                /// <summary>
+                /// File is classified as a Television Episode.  The show may be existing or this may be the first episode.
+                /// </summary>
+                TELEVISION_EPISODE,
+
+                /// <summary>
+                /// File is classified as a Movie.
+                /// </summary>
+                MOVIE,
+
+                /// <summary>
+                /// File is classified as a television special.  This includes season trailers, special episodes, and other non-standard television content.
+                /// </summary>
+                TV_SPECIAL,
+
+                /// <summary>
+                /// File is classified as a subtitle file.  File should have a corresponding file with a valid media file extension for which the subtitle file belongs.
+                /// </summary>
+                SUBTITLE_FILE,
+
+                /// <summary>
+                /// Automation was unable to determine a media type classification.  This file may be junk, or it may need to be reviewed manually by an administrator.
+                /// </summary>
+                OTHER
+            }
         #endregion
     }
 }
